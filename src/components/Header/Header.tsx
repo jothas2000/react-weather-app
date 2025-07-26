@@ -12,10 +12,12 @@ const Header: React.FC = () => {
 
   return (
     <HeaderContainer>
-      <Title>React Weather</Title>
+      {/* AQUI ESTÁ A LINHA QUE FOI TRADUZIDA */}
+      <Title>App de Clima com React</Title>
+      
       <HeaderIconsContainer>
         <DarkModeToggle checked={isDarkMode} onChange={() => dispatch(toggleDarkMode())} size={60} />
-        <GithubLink href="http://www.github.com/esnz/reactweather">
+        <GithubLink href="https://github.com/jothas2000/react-weather-app/tree/main">
           <GithubIcon />
         </GithubLink>
       </HeaderIconsContainer>

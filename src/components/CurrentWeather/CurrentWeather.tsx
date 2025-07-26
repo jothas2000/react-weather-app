@@ -43,7 +43,7 @@ const CurrentWeather: React.FC = () => {
   return (
     <WeatherContainer>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <SectionTitle>Current Weather</SectionTitle>
+        <SectionTitle>Clima atual</SectionTitle>
         <div>
           <ToggleSwitch onClick={() => dispatch(changeTempUnit())} />
         </div>
@@ -63,7 +63,7 @@ const CurrentWeather: React.FC = () => {
 
         <CurrentWeatherInfo>
           <FeelsLike>
-            Feels like <Temperature value={weather.main.feels_like} />
+            Sensação térmica <Temperature value={weather.main.feels_like} />
             <sup>&deg;</sup>
           </FeelsLike>
           <HighLowContainer>
@@ -80,13 +80,13 @@ const CurrentWeather: React.FC = () => {
           </HighLowContainer>
           <InfoRow>
             <div>
-              <HumidityIcon /> Humidity
+              <HumidityIcon /> Umidade
             </div>
             <span>{weather.main.humidity}%</span>
           </InfoRow>
           <InfoRow>
             <div>
-              <WindIcon /> Wind
+              <WindIcon /> Vento
             </div>
             <span>
               {degreeType === TempUnit.CELCIUS ? weather.wind.speed : kmToMile(weather.wind.speed)}
@@ -95,7 +95,7 @@ const CurrentWeather: React.FC = () => {
           </InfoRow>
           <InfoRow>
             <div>
-              <PressureIcon /> Pressure
+              <PressureIcon /> Pressão atmosférica
             </div>
             <span>{weather.main.pressure}hPa</span>
           </InfoRow>

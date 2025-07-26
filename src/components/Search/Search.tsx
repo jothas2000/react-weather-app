@@ -1,3 +1,5 @@
+// src/components/Search/Search.tsx
+
 import React, { useEffect, useRef, useState } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch } from 'react-redux';
@@ -19,9 +21,16 @@ const Search: React.FC = () => {
       return;
     }
     setShowSuggestions(true);
-    fetchCities(searchTerm).then((res) => {
-      setSuggestions(res);
-    });
+    fetchCities(searchTerm)
+      .then((res) => {
+        setSuggestions(res);
+      })
+      // Adicionamos o .catch() para garantir que, se algo der errado,
+      // a aplicação não quebre.
+      .catch(error => {
+        console.error("Erro ao definir sugestões:", error);
+        setSuggestions([]); // Limpa as sugestões em caso de erro.
+      });
   }, [searchTerm]);
 
   useClickOutside(suggestionRef, () => setShowSuggestions(false));
@@ -40,13 +49,15 @@ const Search: React.FC = () => {
   return (
     <SearchElement>
       <SearchIcon />
-      <DebounceInput element={SearchInput} debounceTimeout={300} onChange={onSearchInputChanged} placeholder="Search for location" />
+      {/* TRADUZINDO O PLACEHOLDER */}
+      <DebounceInput element={SearchInput} debounceTimeout={300} onChange={onSearchInputChanged} placeholder="Procure por uma cidade..." />
       <LocationButton
         onClick={() => {
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(showPosition);
           } else {
-            alert('Geolocation is not supported by this browser.');
+            // TRADUZINDO O ALERTA
+            alert('A geolocalização não é suportada por este navegador.');
           }
         }}
       >

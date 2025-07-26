@@ -15,7 +15,7 @@ const Forecast: React.FC = () => {
 
   return (
     <ForecastContainer>
-      <SectionTitle>Extended Forecast</SectionTitle>
+      <SectionTitle>Previsão estendida</SectionTitle>
       <ForecastItems>
         {forecast.map((item, i) => {
           return (
