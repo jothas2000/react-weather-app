@@ -17,7 +17,7 @@ const ForecastItem: React.FC<IForecastItemProps> = (props) => {
       <WeatherIcon code={props.weatherCode} />
       <p>{props.main}</p>
       <span>
-        <Temperature value={props.high} />
+        <strong><Temperature value={props.high} /></strong>  
         <sup>&deg;</sup>
         <small>/</small>
         <Temperature value={props.low} />

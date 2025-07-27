@@ -1,25 +1,36 @@
 import React from 'react';
-import { ReactComponent as GithubIcon } from '../../assets/github.svg';
-import { GithubLink, HeaderContainer, Title, HeaderIconsContainer } from './styed';
-import { useDispatch, useSelector } from 'react-redux';
 import DarkModeToggle from 'react-dark-mode-toggle';
-import { AppStore } from '../../store/store';
-import { toggleDarkMode } from '../../store/reducers/appReducer';
+import { useTheme } from '../../contexts/ThemeContext';
+import { ReactComponent as GithubIcon } from '../../assets/github.svg';
+
+// 1. Removemos 'NavLink' das importações de estilo
+import { 
+  HeaderContainer, 
+  Title, 
+  HeaderIconsContainer, 
+  GithubLink
+} from './styed';
 
 const Header: React.FC = () => {
-  const dispatch = useDispatch();
-  const isDarkMode = useSelector((state: AppStore) => state.app.darkMode);
+  const { theme, toggleTheme } = useTheme();
 
   return (
     <HeaderContainer>
-      {/* AQUI ESTÁ A LINHA QUE FOI TRADUZIDA */}
       <Title>App de Clima com React</Title>
-      
       <HeaderIconsContainer>
-        <DarkModeToggle checked={isDarkMode} onChange={() => dispatch(toggleDarkMode())} size={60} />
-        <GithubLink href="https://github.com/jothas2000/react-weather-app/tree/main">
+        
+        {/* 2. O <NavLink> foi removido daqui */}
+
+        <DarkModeToggle 
+          checked={theme === 'dark'} 
+          onChange={toggleTheme} 
+          size={60} 
+        />
+        
+        <GithubLink href="https://github.com/jothas2000" target="_blank" rel="noopener noreferrer">
           <GithubIcon />
         </GithubLink>
+
       </HeaderIconsContainer>
     </HeaderContainer>
   );

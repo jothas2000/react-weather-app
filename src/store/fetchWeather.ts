@@ -1,10 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { ExtendedForecastData, WeatherData } from '../api/types';
+// Voltamos a importar a função de previsão padrão
 import { fetchExtendedForecastData, fetchWeatherData } from '../api/weather';
 import { getNextSevenDays } from '../utils/dateUtils';
 import { setIsInitial, setIsLoading } from './reducers/appReducer';
 
-// Dicionário de tradução para as condições do tempo
+// O dicionário de tradução continua o mesmo
 const weatherConditionsMap: { [key: string]: string } = {
   Clear: 'Céu Limpo',
   Clouds: 'Nuvens',
@@ -23,26 +24,28 @@ const weatherConditionsMap: { [key: string]: string } = {
   Tornado: 'Tornado',
 };
 
-// Função para traduzir a condição principal do tempo
 const translateWeatherMain = (main: string): string => {
-  return weatherConditionsMap[main] || main; // Retorna a tradução ou o original se não encontrar
+  return weatherConditionsMap[main] || main;
 };
-
+// A lógica de busca volta a ser mais simples
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
-  async (city: string | { lat: number; lng: number }, { dispatch, rejectWithValue }) => {
+  async (city: string | { lat: number; lon: number }, { dispatch, rejectWithValue }) => {
     dispatch(setIsLoading(true));
     try {
+      // Voltamos a chamar as duas APIs ao mesmo tempo
       const [weatherRes, forecastRes] = await Promise.all([
         fetchWeatherData(city),
         fetchExtendedForecastData(city),
       ]);
+
       dispatch(setIsLoading(false));
       if (weatherRes.cod === 200 && forecastRes.cod === "200") {
         dispatch(setIsInitial(false));
         return { weatherRes, forecastRes };
       }
       return rejectWithValue(weatherRes.message || 'Não foi possível buscar os dados do clima.');
+
     } catch (error) {
       dispatch(setIsLoading(false));
       const e = error as Error;
@@ -61,10 +64,10 @@ export const transformWeatherData = (
   const forecastResponse = res.forecastRes;
 
   const weather: WeatherData = {
+    // ... (a parte do clima atual continua a mesma)
     ...weatherResponse,
     weather: {
       ...weatherResponse.weather[0],
-      // --- TRADUÇÃO APLICADA AQUI ---
       main: translateWeatherMain(weatherResponse.weather[0].main),
     },
     main: {
@@ -80,31 +83,59 @@ export const transformWeatherData = (
     }
   };
 
+  // --- LÓGICA DE PREVISÃO REFEITA ---
   const forecast: ExtendedForecastData[] = [];
-  const next5Days = getNextSevenDays().slice(0, 5);
-  const dailyForecasts = forecastResponse.list.filter((item: any) =>
-    item.dt_txt.includes('12:00:00')
-  );
+  const dailyForecasts: { [key: string]: any[] } = {};
 
-  dailyForecasts.forEach((item: any, index: number) => {
-    if (next5Days[index]) {
-      forecast.push({
-        day: next5Days[index],
-        temp: {
-          temp_max: Math.round(item.main.temp_max),
-          temp_min: Math.round(item.main.temp_min),
-        },
-        weather: {
-          id: item.weather[0].id,
-          // --- E A TRADUÇÃO APLICADA AQUI TAMBÉM ---
-          main: translateWeatherMain(item.weather[0].main),
-        },
-      });
+  // 1. Agrupamos todas as 40 previsões por dia.
+  forecastResponse.list.forEach((item: any) => {
+    const date = item.dt_txt.split(' ')[0]; // Pega só a parte da data (ex: "2025-07-27")
+    if (!dailyForecasts[date]) {
+      dailyForecasts[date] = [];
     }
+    dailyForecasts[date].push(item);
   });
+
+  const nextDays = getNextSevenDays();
+  let dayIndex = 0;
+
+  // 2. Iteramos sobre os dias agrupados para calcular o min/max real.
+  for (const date in dailyForecasts) {
+    // Ignoramos o dia de hoje, pois ele já está no card principal
+    if (new Date(date).getDate() === new Date().getDate()) {
+      continue;
+    }
+    
+    const dayItems = dailyForecasts[date];
+    if (!dayItems || dayItems.length === 0 || dayIndex >= 5) {
+      continue;
+    }
+
+    // 3. Encontramos a temperatura MÍNIMA e MÁXIMA entre todas as previsões daquele dia.
+    const minTemps = dayItems.map(item => item.main.temp_min);
+    const maxTemps = dayItems.map(item => item.main.temp_max);
+    const temp_min = Math.min(...minTemps);
+    const temp_max = Math.max(...maxTemps);
+
+    // Pegamos a previsão do meio-dia para ter o ícone e a descrição principal.
+    const representativeWeather = dayItems.find(item => item.dt_txt.includes('12:00:00')) || dayItems[0];
+
+    forecast.push({
+      day: nextDays[dayIndex + 1], // Usamos os nomes de dia traduzidos
+      temp: {
+        temp_max: Math.round(temp_max),
+        temp_min: Math.round(temp_min),
+      },
+      weather: {
+        id: representativeWeather.weather[0].id,
+        main: translateWeatherMain(representativeWeather.weather[0].main),
+      },
+    });
+    dayIndex++;
+  }
 
   return {
     weather,
-    forecast,
+    forecast: forecast.slice(0, 5), // Garantimos que teremos no máximo 5 dias
   };
 };

@@ -1,15 +1,11 @@
-// O caminho provável é src/api/weather.ts
-
 const baseUrl = 'https://api.openweathermap.org/data/2.5';
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
-// Função para buscar o clima atual
-export const fetchWeatherData = async (city: string | { lat: number; lng: number }) => {
+// Esta função para buscar o clima ATUAL continua a mesma.
+export const fetchWeatherData = async (city: string | { lat: number; lon: number }) => {
   let url = '';
-
-  // Adicionamos &lang=pt para receber descrições em português (ex: "nuvens dispersas")
   if (typeof city === 'object') {
-    url = `${baseUrl}/weather?lat=${city.lat}&lon=${city.lng}&units=metric&lang=pt&appid=${apiKey}`;
+    url = `${baseUrl}/weather?lat=${city.lat}&lon=${city.lon}&units=metric&lang=pt&appid=${apiKey}`;
   } else {
     url = `${baseUrl}/weather?q=${city}&units=metric&lang=pt&appid=${apiKey}`;
   }
@@ -26,14 +22,14 @@ export const fetchWeatherData = async (city: string | { lat: number; lng: number
   }
 };
 
-// Função para buscar a previsão do tempo
-export const fetchExtendedForecastData = async (city: string | { lat: number; lng: number }) => {
+// VOLTAMOS A USAR A FUNÇÃO DE PREVISÃO ANTIGA E CONFIÁVEL
+export const fetchExtendedForecastData = async (city: string | { lat: number; lon: number }) => {
+  const forecastType = 'forecast'; // Usando o endpoint /forecast
   let url = '';
-  const forecastType = 'forecast'; 
 
-  // Adicionamos &lang=pt também na previsão
   if (typeof city === 'object') {
-    url = `${baseUrl}/${forecastType}?lat=${city.lat}&lon=${city.lng}&units=metric&lang=pt&appid=${apiKey}`;
+    // A API de previsão padrão também funciona melhor com coordenadas
+    url = `${baseUrl}/${forecastType}?lat=${city.lat}&lon=${city.lon}&units=metric&lang=pt&appid=${apiKey}`;
   } else {
     url = `${baseUrl}/${forecastType}?q=${city}&units=metric&lang=pt&appid=${apiKey}`;
   }
