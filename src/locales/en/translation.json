@@ -1,0 +1,16 @@
+{
+  "app_title": "React Weather App",
+  "search_placeholder": "Search for a city...",
+  "current_weather": "Current Weather",
+  "feels_like": "Feels like",
+  "humidity": "Humidity",
+  "wind": "Wind",
+  "pressure": "Pressure",
+  "extended_forecast": "Extended Forecast",
+  "about_me": "About me",
+  "about_page_title": "Hi, I'm Thales do Prado Menendez!",
+  "about_paragraph_1": "I am a beginner technology enthusiast in front-end development and user interface creation. My goal is to develop my skills in creating intuitive and user-friendly interfaces. I am very excited about the internship opportunity at BlueRise, as I believe it is the ideal environment to apply and expand my knowledge in technologies like React and TypeScript, and for personal development in general.",
+  "about_paragraph_2": "My goal is to grow as a developer, learn from experienced professionals, and contribute to challenging projects. This technical test was an excellent opportunity to demonstrate my dedication and willingness to learn, and I hope to learn much more during the process.",
+  "contact_form_title": "Get in Touch",
+  "back_to_weather_button": "Back to the application"
+}

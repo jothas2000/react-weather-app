@@ -1,10 +1,12 @@
+// ARQUIVO: src/pages/Sobre/Sobre.tsx
+
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next'; // 1. Importamos o hook
 import ContactForm from '../../components/ContactForm/ContactForm';
 
-// --- Estilos para a página ---
-// Usamos os mesmos princípios de design do resto da aplicação
+// --- Estilos para a página (o seu código original) ---
 const SobreContainer = styled.div`
   max-width: 800px;
   margin: 4rem auto;
@@ -42,8 +44,6 @@ const Paragraph = styled.p`
   color: ${({ theme }) => theme.subTextColor};
 `;
 
-// 2. CRIAMOS UM NOVO COMPONENTE DE ESTILO PARA O BOTÃO "VOLTAR"
-//    Ele é baseado no componente Link, então funcionará como um link de navegação.
 const BackButton = styled(Link)`
   display: inline-block;
   margin-top: 2rem;
@@ -75,26 +75,27 @@ const SectionTitle = styled.h2`
 
 // --- Componente da Página ---
 const Sobre: React.FC = () => {
+  const { t } = useTranslation(); // 2. Usamos o hook
+
   return (
     <SobreContainer>
-      {/* IMPORTANTE: Coloque uma foto sua na pasta 'public' do projeto
-          e altere o nome do ficheiro aqui. */}
       <ProfileImage src="selfie.jpeg" alt="Foto de Perfil do Thales" />
       
-      <Title>Olá, eu sou o Thales do Prado Menendez!</Title>
+      {/* 3. Todos os textos agora usam a função 't' */}
+      <Title>{t('about_page_title')}</Title>
       
       <Paragraph>
-        Sou um entusiasta de tecnologia principiante em desenvolvimento front-end e criação de interfaces de utilizador. Meu objetivo é desenvolver minha habilidade para desenvolver interfaces intuitivas e confortáveis para o usuário. Estou muito animado com a oportunidade de estágio na BlueRise, pois acredito que é o ambiente ideal para aplicar e expandir os meus conhecimentos em tecnologias como React e TypeScript e desenvolvimento pessoal no geral.
+        {t('about_paragraph_1')}
       </Paragraph>
 
       <Paragraph>
-        O meu objetivo é crescer como desenvolvedor, aprender com profissionais experientes e contribuir para projetos desafiadores. Este teste técnico foi uma excelente oportunidade para demonstrar a minha dedicação e vontade de aprender e espero aprender muito mais durante o processo.
+        {t('about_paragraph_2')}
       </Paragraph>
 
-      <SectionTitle>Entre em Contato</SectionTitle>
+      <SectionTitle>{t('contact_form_title')}</SectionTitle>
       <ContactForm />
 
-      <BackButton to="/">Voltar para a aplicação</BackButton>
+      <BackButton to="/">{t('back_to_weather_button')}</BackButton>
     </SobreContainer>
   );
 };

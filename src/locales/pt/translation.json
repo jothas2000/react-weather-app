@@ -1,0 +1,16 @@
+{
+  "app_title": "App de Clima com React",
+  "search_placeholder": "Procure por uma cidade...",
+  "current_weather": "Clima Atual",
+  "feels_like": "Sensação térmica",
+  "humidity": "Humidade",
+  "wind": "Vento",
+  "pressure": "Pressão",
+  "extended_forecast": "Previsão Estendida",
+  "about_me": "Sobre mim",
+  "about_page_title": "Olá, eu sou o Thales do Prado Menendez!",
+  "about_paragraph_1": "Sou um entusiasta de tecnologia principiante em desenvolvimento front-end e criação de interfaces de utilizador. Meu objetivo é desenvolver minha habilidade para desenvolver interfaces intuitivas e confortáveis para o usuário. Estou muito animado com a oportunidade de estágio na BlueRise, pois acredito que é o ambiente ideal para aplicar e expandir os meus conhecimentos em tecnologias como React e TypeScript e desenvolvimento pessoal no geral.",
+  "about_paragraph_2": "O meu objetivo é crescer como desenvolvedor, aprender com profissionais experientes e contribuir para projetos desafiadores. Este teste técnico foi uma excelente oportunidade para demonstrar a minha dedicação e vontade de aprender e espero aprender muito mais durante o processo.",
+  "contact_form_title": "Entre em Contato",
+  "back_to_weather_button": "Voltar para a aplicação"
+}

@@ -1,6 +1,9 @@
+// ARQUIVO: src/components/Search/Search.tsx
+
 import React, { useEffect, useRef, useState } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next'; // 1. Importamos o hook
 import { fetchWeather } from '../../store/fetchWeather';
 import { fetchCities } from './../../api/placeSuggestion';
 import { useClickOutside } from './../../hooks/useClickOutside';
@@ -13,7 +16,9 @@ const Search: React.FC = () => {
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
+  const { t } = useTranslation(); // 2. Usamos o hook para obter a função 't'
 
+  // ... (o resto da sua lógica continua igual)
   useEffect(() => {
     if (!searchTerm) {
       return;
@@ -47,7 +52,13 @@ const Search: React.FC = () => {
   return (
     <SearchElement>
       <SearchIcon />
-      <DebounceInput element={SearchInput} debounceTimeout={300} onChange={onSearchInputChanged} placeholder="Procure por uma cidade..." />
+      {/* 3. Substituímos o placeholder fixo pela nossa função de tradução */}
+      <DebounceInput 
+        element={SearchInput} 
+        debounceTimeout={300} 
+        onChange={onSearchInputChanged} 
+        placeholder={t('search_placeholder')} 
+      />
       <LocationButton
         onClick={() => {
           if (navigator.geolocation) {

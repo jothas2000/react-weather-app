@@ -1,24 +1,24 @@
+// ARQUIVO: src/components/Forecast/Forecast.tsx
+
 import React from 'react';
+import { useTranslation } from 'react-i18next'; // 1. Importamos o hook
 import { ExtendedForecastData } from '../../api/types';
-import ForecastItem from './ForecastItem'; // O componente que renderiza cada dia
+import ForecastItem from './ForecastItem';
 import { ForecastContainer, ForecastItems, SectionTitle } from './styled';
 
-// 1. DEFINIMOS A INTERFACE DAS PROPS
-//    O componente espera receber 'data' como um array de previsões.
 interface ForecastProps {
   data: ExtendedForecastData[];
 }
 
-// 2. O COMPONENTE AGORA RECEBE 'data' COMO PROP
 const Forecast: React.FC<ForecastProps> = ({ data }) => {
-  // 3. REMOVEMOS a lógica do Redux (useSelector).
-  //    O componente agora é "puro" e apenas exibe os dados recebidos.
+  const { t } = useTranslation(); // 2. Usamos o hook para obter a função 't'
 
   return (
     <ForecastContainer>
-      <SectionTitle>Previsão Estendida</SectionTitle>
+      {/* 3. Substituímos o texto fixo pela nossa função de tradução */}
+      <SectionTitle>{t('extended_forecast')}</SectionTitle>
+      
       <ForecastItems>
-        {/* 4. Mapeamos o array 'data' recebido via props */}
         {data.map((item, i) => (
           <ForecastItem
             key={i}
@@ -34,5 +34,4 @@ const Forecast: React.FC<ForecastProps> = ({ data }) => {
   );
 };
 
-// Exportamos o componente Forecast por padrão
 export default Forecast;

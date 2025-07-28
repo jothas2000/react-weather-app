@@ -20,7 +20,7 @@ export const Title = styled.h1`
   font-weight: 600;
   color: ${({ theme }) => theme.appTitleColor};
   align: self: left;
-  padding-right: 17rem;
+  padding-right: 11rem;
 `;
 
 // Um container para agrupar os ícones e links à direita.

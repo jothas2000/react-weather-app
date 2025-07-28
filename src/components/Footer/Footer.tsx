@@ -1,16 +1,20 @@
 // ARQUIVO: src/components/Footer/Footer.tsx
 
 import React from 'react';
-// Importamos os nossos novos componentes estilizados
+// 1. Importamos o hook de tradução
+import { useTranslation } from 'react-i18next';
+// Importamos os seus componentes de estilo
 import { FooterContainer, FooterText, ProfileLink } from './styled';
 
 const Footer: React.FC = () => {
+  // 2. Usamos o hook para obter a função 't'
+  const { t } = useTranslation();
+
   return (
     <FooterContainer>
       <FooterText>
-        {/* A tag <a> foi substituída pelo nosso <ProfileLink> estilizado,
-            que aponta para a rota interna "/sobre". */}
-        Sobre mim <ProfileLink to="/sobre">Thales do Prado Menendez</ProfileLink>
+        {/* 3. Aplicamos a tradução ao texto "Sobre mim" */}
+        {t('about_me')} <ProfileLink to="/sobre">Thales do Prado Menendez</ProfileLink>
       </FooterText>
     </FooterContainer>
   );
