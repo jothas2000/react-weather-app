@@ -64,7 +64,8 @@ Crie um ficheiro chamado .env na raiz do projeto.
 
 Dentro deste ficheiro, adicione a sua chave de API do OpenWeatherMap:
 
-REACT_APP_OPENWEATHER_API_KEY=SUA_CHAVE_DE_API_VEM_AQUI
+REACT_APP_OPENWEATHER_API_KEY=1a372c7d38bd67bd8662bf6c688f3cb7
+Coloquei a chave da API aqui, pois é uma API gratuita, apesar de ser uma má prática. após a entrega do teste irei desativar está chave.
 
 Execução
 Inicie o servidor de desenvolvimento:
