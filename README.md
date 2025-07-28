@@ -1,13 +1,13 @@
 React Weather App - Teste Prático BlueRise 🚀
-Este projeto é uma aplicação de meteorologia desenvolvida como parte do processo seletivo para a vaga de estágio em Front-End na BlueRise. A aplicação foi construída a partir de um repositório base, com diversas melhorias, refatorações e novas funcionalidades implementadas para demonstrar competências em desenvolvimento web moderno.
+Este projeto é uma aplicação de meteorologia desenvolvida como parte do processo seletivo para a vaga de estágio em Front-End na BlueRise. A aplicação foi construída a partir de um repositório base, com diversas melhorias, refatorações e novas funcionalidades implementadas para demonstrar competências em desenvolvimento web moderno e proatividade.
 
 🔗 Link para o Deploy
 A aplicação está disponível online e pode ser acedida através do seguinte link:
 
-Clique aqui para ver o projeto online (<- Substitua pelo seu link da Netlify)
+[Clique aqui para ver o projeto online](https://bluerise-test.netlify.app/)
 
 ✨ Funcionalidades Implementadas
-Internacionalização (i18n): Como um diferencial, a aplicação foi totalmente internacionalizada com react-i18next, permitindo a troca dinâmica de idioma (Português/Inglês) em toda a interface.
+Internacionalização (i18n): Como um diferencial, a aplicação foi totalmente internacionalizada com react-i18next. O utilizador pode alternar dinamicamente entre Português e Inglês, e toda a interface, incluindo os dados da API e as mensagens de erro do formulário, é traduzida em tempo real.
 
 Tema Claro/Escuro: Suporte a tema claro e escuro, refatorado do Redux para a Context API do React, permitindo uma gestão de tema mais moderna e desacoplada.
 
@@ -42,12 +42,12 @@ Siga os passos abaixo para instalar e executar o projeto na sua máquina.
 Pré-requisitos
 Node.js (versão 16 ou superior)
 
-npm ou Yarn
+npm
 
 Instalação
 Clone o repositório:
 
-git clone https://github.com/seu-usuario/react-weather-app.git
+git clone https://github.com/jothas2000/react-weather-app.git
 
 Navegue para a pasta do projeto:
 
@@ -83,6 +83,6 @@ Refatoração de Redux para Context API: Substituir a lógica de tema do Redux p
 
 Tipagem com Styled Components: Integrar o TypeScript com o styled-components de forma robusta exigiu a criação de um ficheiro de declaração de tipos (styled.d.ts). Este processo foi fundamental para garantir a segurança de tipos no nosso sistema de temas e para depurar erros de tipo complexos que surgiram durante a implementação.
 
-Validação de Dados da API: A API de previsão gratuita não fornecia diretamente as temperaturas mínimas e máximas do dia. Foi necessário implementar uma lógica para agrupar as previsões de 3 em 3 horas por dia e calcular os valores reais, o que resultou em dados muito mais precisos para o utilizador e numa compreensão mais profunda de como manipular e transformar dados de APIs.
+Internacionalização Dinâmica: Implementar o i18n foi um desafio interessante. Não bastava traduzir os textos estáticos; foi necessário refatorar a lógica de busca de dados para que, ao mudar de idioma, uma nova chamada à API fosse feita para buscar os dados meteorológicos (como a descrição do tempo e os dias da semana) já traduzidos, garantindo uma experiência de utilizador totalmente imersiva.
 
 Este teste foi uma oportunidade incrível para enfrentar e resolver problemas do mundo real, consolidando os meus conhecimentos em React e no seu ecossistema.
