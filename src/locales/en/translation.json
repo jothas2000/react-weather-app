@@ -12,5 +12,14 @@
   "about_paragraph_1": "I am a beginner technology enthusiast in front-end development and user interface creation. My goal is to develop my skills in creating intuitive and user-friendly interfaces. I am very excited about the internship opportunity at BlueRise, as I believe it is the ideal environment to apply and expand my knowledge in technologies like React and TypeScript, and for personal development in general.",
   "about_paragraph_2": "My goal is to grow as a developer, learn from experienced professionals, and contribute to challenging projects. This technical test was an excellent opportunity to demonstrate my dedication and willingness to learn, and I hope to learn much more during the process.",
   "contact_form_title": "Get in Touch",
-  "back_to_weather_button": "Back to the application"
+  "back_to_weather_button": "Back to the application",
+  "form_name": "Name",
+  "form_email": "Email",
+  "form_message": "Message",
+  "form_submit_button": "Send Message",
+  "form_submitting_button": "Sending...",
+  "validation_name_min": "Name must be at least 3 characters long.",
+  "validation_email_invalid": "Please enter a valid email.",
+  "validation_message_min": "Message must be at least 10 characters long.",
+  "form_alert_success": "Thank you for your message, {{name}}!"
 }

@@ -1,24 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react'; // Importamos o useMemo
 import { useForm } from 'react-hook-form';
-// NÃO VAMOS MAIS USAR O ZODRESOLVER
-// import { zodResolver } from '@hookform/resolvers/zod';
+import { useTranslation } from 'react-i18next'; // 1. Importamos o hook de tradução
 import { z } from 'zod';
 import styled from 'styled-components';
 
-// --- 1. DEFINIÇÃO DO TIPO E DAS REGRAS (continua igual) ---
+// --- 1. DEFINIÇÃO DO TIPO E DAS REGRAS
 interface IFormData {
   name: string;
   email: string;
   message: string;
 }
 
-const contactFormSchema = z.object({
-  name: z.string().min(3, { message: 'O nome deve ter pelo menos 3 caracteres.' }),
-  email: z.string().email({ message: 'Por favor, insira um e-mail válido.' }),
-  message: z.string().min(10, { message: 'A mensagem deve ter pelo menos 10 caracteres.' }),
-});
-
-// --- 3. ESTILOS DO FORMULÁRIO COM STYLED-COMPONENTS ---
+// --- 2. ESTILOS DO FORMULÁRIO COM STYLED-COMPONENTS ---
 const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -90,38 +83,41 @@ const SubmitButton = styled.button`
     cursor: not-allowed;
   }
 `;
-
-
-// --- 3. O COMPONENTE DO FORMULÁRIO COM A LÓGICA REFEITA ---
+// O componente do formulário com a lógica de tradução
 const ContactForm: React.FC = () => {
+  const { t } = useTranslation(); // 2. Usamos o hook para obter a função 't'
+
+  // 3. MOVEMOS A DEFINIÇÃO DO ESQUEMA PARA DENTRO DO COMPONENTE
+  //    Envolvemo-la em 'useMemo' para que não seja recriada em cada renderização.
+  const contactFormSchema = useMemo(() => {
+    return z.object({
+      name: z.string().min(3, { message: t('validation_name_min') }),
+      email: z.string().email({ message: t('validation_email_invalid') }),
+      message: z.string().min(10, { message: t('validation_message_min') }),
+    });
+  }, [t]); // O esquema será recriado apenas quando o idioma ('t') mudar
+
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-    setError, // Importamos a função para definir erros manualmente
+    setError,
     reset,
-  } = useForm<IFormData>({});
+  } = useForm<IFormData>();
 
-  // A nossa função de envio agora fará a validação manualmente.
   const onSubmit = async (data: IFormData) => {
     try {
-      // 1. Validamos os dados com o Zod ANTES de fazer qualquer outra coisa.
-      //    O 'parse' irá lançar um erro se a validação falhar.
+      // A validação agora usa o esquema que está ciente do idioma
       contactFormSchema.parse(data);
 
-      // 2. Se a validação passar, continuamos com a lógica de envio.
       console.log("Dados válidos, a enviar...", data);
       await new Promise(resolve => setTimeout(resolve, 1000));
-      alert(`Obrigado pela sua mensagem, ${data.name}!`);
+      alert(t('form_alert_success', { name: data.name }));
       reset();
 
     } catch (error) {
-      // 3. Se a validação falhar, o Zod lança um erro que nós capturamos aqui.
       if (error instanceof z.ZodError) {
-        // Iteramos sobre os erros que o Zod encontrou...
         error.errors.forEach((err) => {
-          // ...e usamos a função 'setError' do react-hook-form para mostrar a mensagem
-          // no campo correto.
           setError(err.path[0] as keyof IFormData, {
             message: err.message,
           });
@@ -131,27 +127,28 @@ const ContactForm: React.FC = () => {
   };
 
   return (
+    // 4. TRADUZIMOS TODOS OS TEXTOS DA INTERFACE
     <FormContainer onSubmit={handleSubmit(onSubmit)}>
       <FormGroup>
-        <label htmlFor="name">Nome</label>
+        <label htmlFor="name">{t('form_name')}</label>
         <FormInput id="name" type="text" {...register('name')} />
         {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
-        <label htmlFor="email">E-mail</label>
+        <label htmlFor="email">{t('form_email')}</label>
         <FormInput id="email" type="email" {...register('email')} />
         {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
-        <label htmlFor="message">Mensagem</label>
+        <label htmlFor="message">{t('form_message')}</label>
         <FormTextarea id="message" {...register('message')} />
         {errors.message && <ErrorMessage>{errors.message.message}</ErrorMessage>}
       </FormGroup>
 
       <SubmitButton type="submit" disabled={isSubmitting}>
-        {isSubmitting ? 'A Enviar...' : 'Enviar Mensagem'}
+        {isSubmitting ? t('form_submitting_button') : t('form_submit_button')}
       </SubmitButton>
     </FormContainer>
   );

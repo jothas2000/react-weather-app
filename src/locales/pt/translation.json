@@ -12,5 +12,14 @@
   "about_paragraph_1": "Sou um entusiasta de tecnologia principiante em desenvolvimento front-end e criação de interfaces de utilizador. Meu objetivo é desenvolver minha habilidade para desenvolver interfaces intuitivas e confortáveis para o usuário. Estou muito animado com a oportunidade de estágio na BlueRise, pois acredito que é o ambiente ideal para aplicar e expandir os meus conhecimentos em tecnologias como React e TypeScript e desenvolvimento pessoal no geral.",
   "about_paragraph_2": "O meu objetivo é crescer como desenvolvedor, aprender com profissionais experientes e contribuir para projetos desafiadores. Este teste técnico foi uma excelente oportunidade para demonstrar a minha dedicação e vontade de aprender e espero aprender muito mais durante o processo.",
   "contact_form_title": "Entre em Contato",
-  "back_to_weather_button": "Voltar para a aplicação"
+  "back_to_weather_button": "Voltar para a aplicação",
+  "form_name": "Nome",
+  "form_email": "E-mail",
+  "form_message": "Mensagem",
+  "form_submit_button": "Enviar Mensagem",
+  "form_submitting_button": "A Enviar...",
+  "validation_name_min": "O nome deve ter pelo menos 3 caracteres.",
+  "validation_email_invalid": "Por favor, insira um e-mail válido.",
+  "validation_message_min": "A mensagem deve ter pelo menos 10 caracteres.",
+  "form_alert_success": "Obrigado pela sua mensagem, {{name}}!"
 }
