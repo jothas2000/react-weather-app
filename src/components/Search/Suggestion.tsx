@@ -1,24 +1,35 @@
-import * as React from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchWeather } from '../../store/fetchWeather';
-import { SuggestionItem } from './styled';
+import { SuggestionItem } from './styled'; 
 
-interface ISuggestionProps {
+interface SuggestionProps {
   label: string;
-  hideSuggestionFn: Function;
+  lang: string; // O componente agora recebe o idioma
+  hideSuggestionFn: () => void;
 }
 
-const Suggestion: React.FC<ISuggestionProps> = (props) => {
+const Suggestion: React.FC<SuggestionProps> = ({ label, lang, hideSuggestionFn }) => {
   const dispatch = useDispatch();
 
-  const onClick = () => {
-    dispatch(fetchWeather(props.label.split(',')[0]));
-    setTimeout(() => {
-      props.hideSuggestionFn();
-    }, 400);
+  const handleSuggestionClick = () => {
+    // Ao clicar, despachamos a ação com o FORMATO CORRETO
+    dispatch(
+      fetchWeather({
+        city: label, // A cidade é a string do 'label'
+        lang: lang,  // Usamos o idioma recebido via props
+      })
+    );
+    // Escondemos a lista de sugestões
+    hideSuggestionFn();
   };
 
-  return <SuggestionItem onClick={onClick}>{props.label}</SuggestionItem>;
+  return (
+    // Usamos o seu componente de estilo e ligamos a função ao onClick
+    <SuggestionItem onClick={handleSuggestionClick}>
+      {label}
+    </SuggestionItem>
+  );
 };
 
 export default Suggestion;

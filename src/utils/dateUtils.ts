@@ -1,24 +1,17 @@
-// Nomes dos dias da semana em português
-const WEEK_DAYS = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
+// ARQUIVO: src/utils/dateUtils.ts
 
-export const getNextSevenDays = (): string[] => {
-  const today = new Date();
+// A função agora recebe o código do idioma (ex: 'pt-BR', 'en-US')
+export const getNextSevenDays = (lang: string): string[] => {
   const next7Days: string[] = [];
+  const today = new Date();
 
   for (let i = 0; i < 7; i++) {
     const nextDay = new Date(today);
     nextDay.setDate(today.getDate() + i);
-    // Adiciona o nome do dia em português ao array
-    next7Days.push(WEEK_DAYS[nextDay.getDay()]);
+    // Usamos a API Intl para obter o nome do dia da semana abreviado e traduzido
+    const dayName = new Intl.DateTimeFormat(lang, { weekday: 'short' }).format(nextDay);
+    // Deixamos a primeira letra maiúscula
+    next7Days.push(dayName.charAt(0).toUpperCase() + dayName.slice(1));
   }
-
   return next7Days;
-};
-export const formatDate = (date: Date): string => {
-  const options: Intl.DateTimeFormatOptions = {
-    day: '2-digit',
-    month: '2-digit',
-    year: 'numeric',
-  };
-  return date.toLocaleDateString('pt-BR', options);
 };

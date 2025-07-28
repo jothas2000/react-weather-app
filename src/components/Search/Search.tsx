@@ -1,9 +1,7 @@
-// ARQUIVO: src/components/Search/Search.tsx
-
 import React, { useEffect, useRef, useState } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import { useDispatch } from 'react-redux';
-import { useTranslation } from 'react-i18next'; // 1. Importamos o hook
+import { useTranslation } from 'react-i18next'; // 1. Importamos o hook de tradução
 import { fetchWeather } from '../../store/fetchWeather';
 import { fetchCities } from './../../api/placeSuggestion';
 import { useClickOutside } from './../../hooks/useClickOutside';
@@ -12,13 +10,12 @@ import Suggestion from './Suggestion';
 
 const Search: React.FC = () => {
   const dispatch = useDispatch();
+  const { t, i18n } = useTranslation(); // 2. Obtemos a instância do i18n para saber o idioma atual
   const suggestionRef = useRef(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const { t } = useTranslation(); // 2. Usamos o hook para obter a função 't'
 
-  // ... (o resto da sua lógica continua igual)
   useEffect(() => {
     if (!searchTerm) {
       return;
@@ -40,11 +37,17 @@ const Search: React.FC = () => {
     setSearchTerm(e.target.value);
   };
 
-  const showPosition = (position: any) => {
+    const showPosition = (position: any) => {
     dispatch(
+      // 3. CORRIGIMOS O FORMATO DO OBJETO
       fetchWeather({
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
+        // O objeto de coordenadas agora está dentro da propriedade 'city'
+        city: { 
+          lat: position.coords.latitude,
+          lon: position.coords.longitude,
+        },
+        // E adicionamos o idioma atual
+        lang: i18n.language, 
       })
     );
   };
@@ -52,7 +55,6 @@ const Search: React.FC = () => {
   return (
     <SearchElement>
       <SearchIcon />
-      {/* 3. Substituímos o placeholder fixo pela nossa função de tradução */}
       <DebounceInput 
         element={SearchInput} 
         debounceTimeout={300} 
@@ -76,6 +78,8 @@ const Search: React.FC = () => {
             <Suggestion
               key={i}
               label={s}
+              // 4. Passamos o idioma atual para o componente Suggestion
+              lang={i18n.language} 
               hideSuggestionFn={() => {
                 setShowSuggestions(false);
               }}
