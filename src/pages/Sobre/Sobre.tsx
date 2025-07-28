@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import ContactForm from '../../components/ContactForm/ContactForm';
 
 // --- Estilos para a página ---
 // Usamos os mesmos princípios de design do resto da aplicação
@@ -62,6 +63,16 @@ const BackButton = styled(Link)`
   }
 `;
 
+const SectionTitle = styled.h2`
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: ${({ theme }) => theme.appTitleColor};
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  border-top: 1px solid ${({ theme }) => theme.subTextColor};
+  padding-top: 2rem;
+`;
+
 // --- Componente da Página ---
 const Sobre: React.FC = () => {
   return (
@@ -79,6 +90,9 @@ const Sobre: React.FC = () => {
       <Paragraph>
         O meu objetivo é crescer como desenvolvedor, aprender com profissionais experientes e contribuir para projetos desafiadores. Este teste técnico foi uma excelente oportunidade para demonstrar a minha dedicação e vontade de aprender e espero aprender muito mais durante o processo.
       </Paragraph>
+
+      <SectionTitle>Entre em Contato</SectionTitle>
+      <ContactForm />
 
       <BackButton to="/">Voltar para a aplicação</BackButton>
     </SobreContainer>

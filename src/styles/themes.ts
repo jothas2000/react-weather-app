@@ -58,7 +58,7 @@ export const lightTheme: Theme = {
   backgroundGradient: { color1: '#a1c4fd', color2: '#c2e9fb' },
   headerBgColor: 'rgba(255, 255, 255, 0.2)', // Mais transparente
   panelBgColor: 'rgba(255, 255, 255, 1)', // Cor de vidro claro
-  forecastPanelBgColor: 'rgba(255, 255, 255, 0.2)', // Cor de vidro claro
+  forecastPanelBgColor: 'rgba(131, 180, 255, 0.4)', // Cor de vidro claro
   
   // Textos
   appTitleColor: '#2c3e50',
@@ -105,7 +105,7 @@ export const darkTheme: Theme = {
   backgroundGradient: { color1: '#09203f', color2: '#537895' },
   headerBgColor: 'rgba(9, 32, 63, 0.2)', 
   panelBgColor: 'rgba(9, 32, 63, 1)', 
-  forecastPanelBgColor: 'rgba(9, 32, 63, 0.2)', 
+  forecastPanelBgColor: 'rgba(9, 32, 63, 0.4)', 
 
   // Textos
   appTitleColor: '#ecf0f1',

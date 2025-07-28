@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 
 export const FooterContainer = styled.footer`
   text-align: center;
-  font-color: ${({ theme }) => theme.textColor};
   padding: 0.5rem 0.5rem;
   margin-top: 0.5rem;
   color: ${({ theme }) => theme.subTextColor};
