@@ -1,7 +1,7 @@
 import React, { createContext, useState, useContext, ReactNode, useMemo } from 'react';
 import { ThemeProvider as StyledThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '../styles/themes';
-import { GlobalStyles } from '../styles/global'; // <-- VERIFIQUE SE ESTE IMPORT ESTÁ CORRETO
+import { GlobalStyles } from '../styles/global'; 
 
 interface ThemeContextData {
   theme: 'light' | 'dark';
@@ -27,7 +27,6 @@ export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) =
   return (
     <ThemeContext.Provider value={contextValue}>
       <StyledThemeProvider theme={currentThemeObject}>
-        {/* AQUI! GARANTA QUE O GLOBALSTYLES ESTÁ SENDO RENDERIZADO */}
         <GlobalStyles />
         {children}
       </StyledThemeProvider>

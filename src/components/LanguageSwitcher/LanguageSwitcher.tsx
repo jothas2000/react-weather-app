@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-// 1. ADICIONAMOS A IMPORTAÇÃO QUE FALTAVA
 import { useDispatch, useSelector } from 'react-redux'; 
 import styled from 'styled-components';
 import { AppStore } from '../../store/store';

@@ -1,5 +1,3 @@
-// src/api/placeSuggestion.ts
-
 export const fetchCities = async (search: string) => {
   // Pega a chave de API do arquivo .env
   const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;

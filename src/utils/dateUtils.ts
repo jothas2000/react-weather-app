@@ -1,5 +1,3 @@
-// ARQUIVO: src/utils/dateUtils.ts
-
 // A função agora recebe o código do idioma (ex: 'pt-BR', 'en-US')
 export const getNextSevenDays = (lang: string): string[] => {
   const next7Days: string[] = [];

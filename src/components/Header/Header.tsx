@@ -1,5 +1,3 @@
-// ARQUIVO: src/components/Header/Header.tsx
-
 import React from 'react';
 import DarkModeToggle from 'react-dark-mode-toggle';
 import { useTheme } from '../../contexts/ThemeContext';

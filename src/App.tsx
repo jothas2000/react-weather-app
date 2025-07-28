@@ -1,8 +1,6 @@
 import React from 'react';
 // 1. Importamos 'Switch' em vez de 'Routes'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
-// O resto das suas importações
 import { Provider } from 'react-redux';
 import store from './store/store';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -24,7 +22,7 @@ const App: React.FC = () => {
             <Route path="/sobre">
               <Sobre />
             </Route>
-            
+            {/* A rota para a página inicial (Home) */}
             {/* A rota principal ("/") deve vir por último */}
             <Route path="/">
               <Home />

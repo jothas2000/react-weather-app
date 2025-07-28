@@ -1,12 +1,10 @@
-// ARQUIVO: src/pages/Sobre/Sobre.tsx
-
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // 1. Importamos o hook
 import ContactForm from '../../components/ContactForm/ContactForm';
 
-// --- Estilos para a página (o seu código original) ---
+// --- Estilos para a página ---
 const SobreContainer = styled.div`
   max-width: 800px;
   margin: 4rem auto;

@@ -1,18 +1,16 @@
-// ARQUIVO: src/pages/Home.tsx
-
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { AppStore } from '../store/store';
 
-// Importe os seus componentes
+// Importação dos componentes
 import Header from '../components/Header/Header';
 import Search from '../components/Search/Search';
 import CurrentWeather from '../components/CurrentWeather/CurrentWeather';
 import Forecast from '../components/Forecast/Forecast';
 import Footer from '../components/Footer/Footer';
 
-// ESTA É A NOSSA NOVA E ÚNICA ESTRUTURA DE LAYOUT
+// ESTA É A NOSSA ESTRUTURA DE LAYOUT
 const PageWrapper = styled.div`
   /* Ocupa no mínimo 100% da altura da janela */
   min-height: 100vh;

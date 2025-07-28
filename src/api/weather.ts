@@ -1,7 +1,6 @@
 const baseUrl = 'https://api.openweathermap.org/data/2.5';
 const apiKey = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
-// A função agora aceita 'lang' como um parâmetro
 export const fetchWeatherData = async (city: string | { lat: number; lon: number }, lang: string) => {
   let url = '';
   if (typeof city === 'object') {
@@ -22,7 +21,7 @@ export const fetchWeatherData = async (city: string | { lat: number; lon: number
   }
 };
 
-/// A função de previsão também aceita 'lang'
+
 export const fetchExtendedForecastData = async (city: string | { lat: number; lon: number }, lang: string) => {
   const forecastType = 'forecast';
   let url = '';

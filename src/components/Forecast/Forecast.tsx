@@ -1,5 +1,3 @@
-// ARQUIVO: src/components/Forecast/Forecast.tsx
-
 import React from 'react';
 import { useTranslation } from 'react-i18next'; // 1. Importamos o hook
 import { ExtendedForecastData } from '../../api/types';

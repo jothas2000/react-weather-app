@@ -1,9 +1,7 @@
-// ARQUIVO: src/i18n.ts
-
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-// Os ficheiros de tradução (vamos criá-los a seguir)
+// import dos ficheiros de tradução
 import ptTranslation from './locales/pt/translation.json';
 import enTranslation from './locales/en/translation.json';
 

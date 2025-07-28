@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import { ReactComponent as LocationIconSvg } from '../../assets/location-icon.svg';
 import { ReactComponent as SearchIconSvg } from '../../assets/search-icon.svg';
 
+
+// --- Estilos para o nosso seletor de pesquisa ---
 export const SearchElement = styled.div`
   position: relative;
   height: 3.25rem;

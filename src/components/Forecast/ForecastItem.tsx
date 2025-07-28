@@ -3,6 +3,9 @@ import Temperature from '../CurrentWeather/Temperature';
 import WeatherIcon from '../CurrentWeather/WeatherIcon';
 import { ForecastItemContainer } from './styled';
 
+// Mostra os itens do extended forecast
+// Cada item é um dia com a previsão do tempo, temperatura máxima e mínima, e o ícone do clima.
+
 interface IForecastItemProps {
   day: string;
   weatherCode: number;

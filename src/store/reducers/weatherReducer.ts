@@ -39,7 +39,7 @@ const initialState: WeatherState = {
   },
   extendedWeatherData: [],
   isError: false,
- lastSearchedCity: null, // <-- VALOR INICIAL
+ lastSearchedCity: null,
 };
 
 const weatherSlice = createSlice({

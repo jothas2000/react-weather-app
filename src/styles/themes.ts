@@ -1,5 +1,3 @@
-// src/styles/themes.ts
-
 // A interface definitiva, com todos os tipos de objeto corrigidos.
 export interface Theme {
   // --- Backgrounds ---
